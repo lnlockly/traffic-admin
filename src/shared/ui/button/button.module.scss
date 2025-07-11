@@ -1,0 +1,109 @@
+.common {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  white-space: nowrap;
+  border-radius: 12px;
+  font-weight: 500;
+  font-size: 14px;
+  transition: all 0.3s;
+  outline: none;
+  color: var(--text-primary);
+
+  &:focus-visible {
+    outline: 1px solid var(--ring);
+  }
+
+  &:disabled {
+    pointer-events: none;
+    opacity: 0.6;
+  }
+  & svg {
+    pointer-events: none;
+    flex-shrink: 0;
+  }
+}
+
+.default {
+  background-color: var(--bg-primary);
+}
+
+.destructive {
+  background-color: var(--destructive);
+}
+
+.secondary {
+  background: var(--gradient-main);
+  font-weight: 600;
+  font-size: 16px;
+}
+.tertiary {
+  background-color: var(--gray-navbar-icon);
+}
+.quaternary {
+  background-color: var(--main-color-2);
+}
+.outline {
+  background: var(--gradient-main);
+  border: 1px solid var(--gray-navbar-icon);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.icon {
+  position: relative;
+  transition: all 0.3s ease 0s;
+  overflow: hidden;
+  border-radius: 12px;
+  width: 48px;
+  height: 48px;
+  box-shadow: 3px 9px 18px 0 rgba(211, 209, 216, 0.3);
+  &::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: #fff;
+    z-index: -1;
+    transition: all 0.3s ease 0s;
+  }
+  @media (any-hover: hover) {
+    &:hover {
+      &::before {
+        background: #f2f2f2;
+      }
+    }
+  }
+}
+
+//Sizes
+.sizeDefault {
+  height: 48px;
+  padding-left: 48px;
+  padding-right: 48px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.sizeSm {
+  height: 32px;
+  border-radius: 6px;
+  padding-left: 12px;
+  padding-right: 12px;
+  font-size: 12px;
+}
+
+.sizeLg {
+  height: 40px;
+  border-radius: 6px;
+  padding-left: 32px;
+  padding-right: 32px;
+}
+
+.sizeIcon {
+  height: 48px;
+  width: 48px;
+}
