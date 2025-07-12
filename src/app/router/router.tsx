@@ -1,14 +1,16 @@
 import { createBrowserRouter } from "react-router-dom";
 
+import { HomePage } from "@/pages/home";
+
 import { Layout } from "@/ui/layout";
 
-import { Home } from "../../pages/home/home";
+import { ROUTERS } from "@/shared/constants/routers";
 
 const routes = [
   {
-    path: "/",
+    path: ROUTERS.MAIN,
     element: <Layout />,
-    children: [{ path: "/", element: <Home /> }],
+    children: [{ path: ROUTERS.MAIN, element: <HomePage /> }],
   },
 ];
 
