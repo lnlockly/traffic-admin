@@ -1,9 +1,11 @@
-import { Container } from "@/ui/container/container";
+import { AppText } from "@/ui/app-text";
+
+import { TEXT } from "@/shared/constants/text";
 
 export const Home = () => {
   return (
     <main>
-      <Container>home</Container>
+      <AppText>{TEXT.home.title}</AppText>
     </main>
   );
 };

@@ -1,11 +1,7 @@
-import { Outlet } from "react-router-dom";
+import { AppComposer } from "./providers/app-composer";
 
 function App() {
-  return (
-    <div>
-      <Outlet />
-    </div>
-  );
+  return <AppComposer />;
 }
 
 export default App;
