@@ -1,4 +1,8 @@
 export const QUERY_KEYS = {
+  PROJECT_CONFIG: {
+    GET: "GET_PROJECT_CONFIG",
+  },
+
   USERS: {
     GET_REFERRALS: "GET_REFERRALS",
   },

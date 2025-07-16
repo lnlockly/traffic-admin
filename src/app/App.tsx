@@ -1,7 +1,13 @@
-import { AppComposer } from "./providers/app-composer";
+import { BrowserRouter } from "react-router-dom";
+
+import MyAdmin from "../admin";
 
 function App() {
-  return <AppComposer />;
+  return (
+    <BrowserRouter>
+      <MyAdmin />
+    </BrowserRouter>
+  );
 }
 
 export default App;

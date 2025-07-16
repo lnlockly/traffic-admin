@@ -12,3 +12,8 @@ export type CommonResponse = {
   success: boolean;
   message: string;
 };
+
+export type BadRespone = {
+  statusCode: number;
+  message: string;
+};
