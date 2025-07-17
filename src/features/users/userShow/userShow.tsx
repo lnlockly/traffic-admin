@@ -23,6 +23,10 @@ export const UserShow: FC = () => {
           source="totalWinAmount"
           label={USERS_FIELDS_LABELS.TOTAL_WIN_AMOUNT}
         />
+        <TextField
+          source="gamesCount"
+          label={USERS_FIELDS_LABELS.GAMES_COUNT}
+        />
 
         <TextField
           source="referralCode"

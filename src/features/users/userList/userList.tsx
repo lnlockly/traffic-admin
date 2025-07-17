@@ -42,6 +42,11 @@ export const UserList: FC = ({ ...props }) => {
           label={USERS_FIELDS_LABELS.TOTAL_WIN_AMOUNT}
           disableSort
         />
+        <DataTable.Col
+          source="gamesCount"
+          label={USERS_FIELDS_LABELS.GAMES_COUNT}
+          disableSort
+        />
 
         <DataTable.Col
           source="referralCode"

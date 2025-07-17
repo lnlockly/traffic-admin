@@ -1,5 +1,11 @@
-import { Button, Card, CardContent, Typography } from "@mui/material";
-import type { FC } from "react";
+import {
+  Button,
+  Card,
+  CardContent,
+  TextField as MuiTextField,
+  Typography,
+} from "@mui/material";
+import { type FC, useState } from "react";
 import {
   ReferenceField,
   SelectField,
@@ -30,11 +36,17 @@ export const WithdrawalRequestShowContent: FC = () => {
   const adminId = useAdminStore((state) => state.adminId);
 
   const takenByAnother = isTakenByAdminId && isTakenByAdminId !== adminId;
+
+  const isNotRedacting = isTakenByAdminId !== adminId || !isInProgress;
+
+  const [rejectComment, setRejectComment] = useState("");
   const onHandleClick = (status: WITHDRAW_STATUS) => {
     if (!record) return null;
+    console.log(rejectComment);
     changeStatus({
       id: record.id.toString(),
       status,
+      comment: rejectComment,
     });
   };
   return (
@@ -85,6 +97,17 @@ export const WithdrawalRequestShowContent: FC = () => {
                 </Typography>
               )}
             </CardContent>
+            <CardContent
+              sx={{
+                display: isNotRedacting ? "none" : "flex",
+              }}
+            >
+              <MuiTextField
+                placeholder="Причина отказа"
+                value={rejectComment}
+                onChange={(e) => setRejectComment(e.target.value)}
+              />
+            </CardContent>
 
             <CardContent
               sx={{
@@ -109,7 +132,7 @@ export const WithdrawalRequestShowContent: FC = () => {
               <Button
                 variant="contained"
                 color="success"
-                disabled={isTakenByAdminId !== adminId || !isInProgress}
+                disabled={isNotRedacting}
                 onClick={() => onHandleClick(WITHDRAW_STATUS.CONFIRMED)}
               >
                 Подтвердить
@@ -117,7 +140,7 @@ export const WithdrawalRequestShowContent: FC = () => {
               <Button
                 variant="contained"
                 color="error"
-                disabled={isTakenByAdminId !== adminId || !isInProgress}
+                disabled={isNotRedacting || rejectComment === ""}
                 onClick={() => onHandleClick(WITHDRAW_STATUS.CANCELED)}
               >
                 Отказать

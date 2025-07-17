@@ -6,6 +6,7 @@ export const USERS_FIELDS_LABELS = {
 
   TOTAL_WAGERED: "Поставлено",
   TOTAL_WIN_AMOUNT: "Суммарный выигрыш",
+  GAMES_COUNT: "Количество игр",
 
   BALANCE: "Баланс",
   REFERRAL_CODE: "Реферальный код",

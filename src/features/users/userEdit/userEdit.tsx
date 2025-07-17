@@ -16,6 +16,7 @@ export const UserEdit: FC<Props> = ({ ...props }) => {
         totalDeposited: data.totalDeposited,
         totalWagered: data.totalWagered,
         totalWinAmount: data.totalWinAmount,
+        gamesCount: data.gamesCount,
         referralCode: data.referralCode,
         referredByCode: data.referredByCode,
       })}
@@ -35,6 +36,11 @@ export const UserEdit: FC<Props> = ({ ...props }) => {
           source="totalWinAmount"
           label={USERS_FIELDS_LABELS.TOTAL_WIN_AMOUNT}
         />
+        <NumberInput
+          source="gamesCount"
+          label={USERS_FIELDS_LABELS.GAMES_COUNT}
+        />
+
         <TextInput
           source="referralCode"
           label={USERS_FIELDS_LABELS.REFERRAL_CODE}
