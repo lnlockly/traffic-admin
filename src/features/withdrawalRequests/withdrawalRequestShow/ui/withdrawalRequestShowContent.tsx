@@ -46,7 +46,7 @@ export const WithdrawalRequestShowContent: FC = () => {
     changeStatus({
       id: record.id.toString(),
       status,
-      comment: rejectComment,
+      comment: status === WITHDRAW_STATUS.CANCELED ? rejectComment : undefined,
     });
   };
   return (
