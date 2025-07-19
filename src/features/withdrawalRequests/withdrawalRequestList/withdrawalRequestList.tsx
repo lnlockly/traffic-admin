@@ -1,6 +1,7 @@
 import type { FC } from "react";
 import {
   DataTable,
+  FunctionField,
   List,
   ReferenceField,
   SelectField,
@@ -32,7 +33,11 @@ export const WithdrawalRequestList: FC = ({ ...props }) => {
           label={USERS_FIELDS_LABELS.USERNAME}
         >
           <ReferenceField source="userId" reference="users">
-            <TextField source="username" />
+            <FunctionField
+              render={(record) =>
+                record.username ? `@${record.username}` : `${record.tgId}`
+              }
+            />
           </ReferenceField>
         </DataTable.Col>
         <DataTable.Col
