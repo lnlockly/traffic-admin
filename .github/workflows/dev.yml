@@ -43,7 +43,7 @@ jobs:
 
             cd $DEPLOY_DIR
             git fetch origin
-            git reset --hard origin/main
+            git reset --hard origin/dev
 
             yarn install --frozen-lockfile
             yarn build
