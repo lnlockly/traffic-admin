@@ -26,7 +26,6 @@ import { AdminList } from "@/features/admins/adminList/adminList";
 import { UserEdit } from "@/features/users/userEdit/userEdit";
 import { UserList } from "@/features/users/userList/userList";
 import { UserShow } from "@/features/users/userShow/userShow";
-import { WithdrawalRequestEdit } from "@/features/withdrawalRequests/withdrawalRequestEdit/withdrawalRequestEdit";
 import { WithdrawalRequestList } from "@/features/withdrawalRequests/withdrawalRequestList/withdrawalRequestList";
 import { WithdrawalRequestShow } from "@/features/withdrawalRequests/withdrawalRequestShow/withdrawalRequestShow";
 
@@ -85,7 +84,6 @@ const App = () => {
       <Resource
         name="withdrawal-requests"
         list={WithdrawalRequestList}
-        edit={WithdrawalRequestEdit}
         show={WithdrawalRequestShow}
         options={{ label: "Запросы на вывод" }}
         icon={RequestPageIcon}
