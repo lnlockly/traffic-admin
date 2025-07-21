@@ -25,9 +25,22 @@ export const ConfigPage: FC = () => {
           referralPercentBonus: projectConfig.referralPercentBonus,
         }}
       >
-        <NumberInput source="houseEdge" label="House Edge" />
-        <NumberInput source="minWithdrawAmount" label="Min Withdraw Amount" />
-        <NumberInput source="referralPercentBonus" label="Referral Bonus" />
+        <NumberInput
+          source="houseEdge"
+          label="House Edge в %"
+          parse={(value) => (value != null ? value / 100 : null)}
+          format={(value) => (value != null ? value * 100 : null)}
+        />
+        <NumberInput
+          source="minWithdrawAmount"
+          label="Минимальная сумма вывода"
+        />
+        <NumberInput
+          source="referralPercentBonus"
+          label="Бонус от ставок для рефералов в %"
+          parse={(value) => (value != null ? value / 100 : null)}
+          format={(value) => (value != null ? value * 100 : null)}
+        />
       </SimpleForm>
     </ResourceContextProvider>
   );
