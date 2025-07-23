@@ -2,6 +2,7 @@ import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import PersonIcon from "@mui/icons-material/Person";
 import RequestPageIcon from "@mui/icons-material/RequestPage";
 import SettingsIcon from "@mui/icons-material/Settings";
+import TaskIcon from "@mui/icons-material/Task";
 import {
   Admin,
   CustomRoutes,
@@ -23,6 +24,10 @@ import { ADMIN_ROLES } from "@/entities/admin/model/types/admin.type";
 import { AdminCreate } from "@/features/admins/adminCreate/adminCreate";
 import { AdminEdit } from "@/features/admins/adminEdit/adminEdit";
 import { AdminList } from "@/features/admins/adminList/adminList";
+import { TaskCreate } from "@/features/tasks/taskCreate/taskCreate";
+import { TaskEdit } from "@/features/tasks/taskEdit/taskEdit";
+import { TaskList } from "@/features/tasks/taskList/taskList";
+import { TaskShow } from "@/features/tasks/taskShow/taskShow";
 import { UserEdit } from "@/features/users/userEdit/userEdit";
 import { UserList } from "@/features/users/userList/userList";
 import { UserShow } from "@/features/users/userShow/userShow";
@@ -80,6 +85,15 @@ const App = () => {
         show={UserShow}
         options={{ label: "Пользователи" }}
         icon={PersonIcon}
+      />
+      <Resource
+        name="tasks"
+        list={TaskList}
+        show={TaskShow}
+        edit={TaskEdit}
+        create={TaskCreate}
+        options={{ label: "Задания" }}
+        icon={TaskIcon}
       />
       <Resource
         name="withdrawal-requests"
