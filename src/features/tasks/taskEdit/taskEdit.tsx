@@ -17,6 +17,7 @@ export const TaskEdit: FC = () => {
         reward: data.reward,
         checkAfterHours: data.checkAfterHours,
         isActive: data.isActive,
+        turnOffAfter: data.turnOffAfter,
       })}
     >
       <SimpleForm>
@@ -25,6 +26,10 @@ export const TaskEdit: FC = () => {
         <NumberInput
           source="checkAfterHours"
           label={TASK_FIELDS_lABELS.CHECK_AFTER_HOURS}
+        />
+        <NumberInput
+          source="turnOffAfter"
+          label={TASK_FIELDS_lABELS.TURN_OFF_AFTER}
         />
         <BooleanInput source="isActive" label={TASK_FIELDS_lABELS.IS_ACTIVE} />
       </SimpleForm>

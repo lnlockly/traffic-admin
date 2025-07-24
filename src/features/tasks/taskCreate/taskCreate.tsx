@@ -13,6 +13,10 @@ export const TaskCreate: FC = ({ ...props }) => {
           source="checkAfterHours"
           label={TASK_FIELDS_lABELS.CHECK_AFTER_HOURS}
         />
+        <NumberInput
+          source="turnOffAfter"
+          label={TASK_FIELDS_lABELS.TURN_OFF_AFTER}
+        />
       </SimpleForm>
     </Create>
   );

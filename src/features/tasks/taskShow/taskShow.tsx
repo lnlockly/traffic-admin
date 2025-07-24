@@ -14,6 +14,10 @@ export const TaskShow: FC = () => {
           source="checkAfterHours"
           label={TASK_FIELDS_lABELS.CHECK_AFTER_HOURS}
         />
+        <TextField
+          source="turnOffAfter"
+          label={TASK_FIELDS_lABELS.TURN_OFF_AFTER}
+        />
         <BooleanField source="isActive" label={TASK_FIELDS_lABELS.IS_ACTIVE} />
       </SimpleShowLayout>
     </Show>
