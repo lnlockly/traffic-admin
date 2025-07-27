@@ -1,4 +1,5 @@
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
+import CellTowerIcon from "@mui/icons-material/CellTower";
 import PersonIcon from "@mui/icons-material/Person";
 import RequestPageIcon from "@mui/icons-material/RequestPage";
 import SettingsIcon from "@mui/icons-material/Settings";
@@ -13,6 +14,7 @@ import {
 } from "react-admin";
 import { Route } from "react-router-dom";
 
+import { BroadcastPage } from "@/pages/broadcastPage/broadcastPage";
 import { ConfigPage } from "@/pages/config/configPage";
 
 import authProvider from "./authProvider";
@@ -40,11 +42,18 @@ const MyMenu = () => {
     <Menu>
       <Menu.ResourceItems />
       {role === ADMIN_ROLES.SUPER_ADMIN && (
-        <Menu.Item
-          to="/config"
-          primaryText="Конфигурация"
-          leftIcon={<SettingsIcon />}
-        />
+        <>
+          <Menu.Item
+            to="/config"
+            primaryText="Конфигурация"
+            leftIcon={<SettingsIcon />}
+          />
+          <Menu.Item
+            to="/broadcast"
+            primaryText="Рассылки"
+            leftIcon={<CellTowerIcon />}
+          />
+        </>
       )}
     </Menu>
   );
@@ -64,6 +73,7 @@ const App = () => {
     >
       <CustomRoutes>
         <Route path="/config" element={<ConfigPage />} />
+        <Route path="/broadcast" element={<BroadcastPage />} />
       </CustomRoutes>
 
       {role === ADMIN_ROLES.SUPER_ADMIN && (
