@@ -14,8 +14,20 @@ import {
 } from "react-admin";
 import { Route } from "react-router-dom";
 
+import { AdminCreate } from "@/pages/admins/adminCreate/adminCreate";
+import { AdminEdit } from "@/pages/admins/adminEdit/adminEdit";
+import { AdminList } from "@/pages/admins/adminList/adminList";
 import { BroadcastPage } from "@/pages/broadcastPage/broadcastPage";
 import { ConfigPage } from "@/pages/config/configPage";
+import { TaskCreate } from "@/pages/tasks/taskCreate/taskCreate";
+import { TaskEdit } from "@/pages/tasks/taskEdit/taskEdit";
+import { TaskList } from "@/pages/tasks/taskList/taskList";
+import { TaskShow } from "@/pages/tasks/taskShow/taskShow";
+import { UserEdit } from "@/pages/users/userEdit/userEdit";
+import { UserList } from "@/pages/users/userList/userList";
+import { UserShow } from "@/pages/users/userShow/userShow";
+import { WithdrawalRequestList } from "@/pages/withdrawalRequests/withdrawalRequestList/withdrawalRequestList";
+import { WithdrawalRequestShow } from "@/pages/withdrawalRequests/withdrawalRequestShow/withdrawalRequestShow";
 
 import authProvider from "./authProvider";
 import { dataProvider } from "./dataProvider";
@@ -23,18 +35,6 @@ import { i18nProvider } from "./i18nProvider";
 import { useInitAdmin } from "./model/hooks/useInitAdminRole";
 import { useAdminStore } from "@/entities/admin/model/store/admin.store";
 import { ADMIN_ROLES } from "@/entities/admin/model/types/admin.type";
-import { AdminCreate } from "@/features/admins/adminCreate/adminCreate";
-import { AdminEdit } from "@/features/admins/adminEdit/adminEdit";
-import { AdminList } from "@/features/admins/adminList/adminList";
-import { TaskCreate } from "@/features/tasks/taskCreate/taskCreate";
-import { TaskEdit } from "@/features/tasks/taskEdit/taskEdit";
-import { TaskList } from "@/features/tasks/taskList/taskList";
-import { TaskShow } from "@/features/tasks/taskShow/taskShow";
-import { UserEdit } from "@/features/users/userEdit/userEdit";
-import { UserList } from "@/features/users/userList/userList";
-import { UserShow } from "@/features/users/userShow/userShow";
-import { WithdrawalRequestList } from "@/features/withdrawalRequests/withdrawalRequestList/withdrawalRequestList";
-import { WithdrawalRequestShow } from "@/features/withdrawalRequests/withdrawalRequestShow/withdrawalRequestShow";
 
 const MyMenu = () => {
   const role = useAdminStore((state) => state.role);

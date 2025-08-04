@@ -1,15 +1,18 @@
 import type { FC } from "react";
 import { DataTable, List } from "react-admin";
 
-import { globalExporter } from "@/model/utils/globalExporter";
-
 import { USERS_FIELDS_LABELS } from "../const";
 
 import { UserFilter } from "./ui/userFilter/userFilter";
+import { CommonToolbar } from "@/features/commonToolbar";
 
 export const UserList: FC = ({ ...props }) => {
   return (
-    <List {...props} filters={<UserFilter />} exporter={globalExporter}>
+    <List
+      {...props}
+      filters={UserFilter}
+      actions={<CommonToolbar haveFilters />}
+    >
       <DataTable bulkActionButtons={false}>
         <DataTable.Col source="id" disableSort />
         <DataTable.Col

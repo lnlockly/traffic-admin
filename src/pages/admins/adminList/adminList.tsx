@@ -1,13 +1,13 @@
 import type { FC } from "react";
 import { DataTable, List } from "react-admin";
 
-import { globalExporter } from "@/model/utils/globalExporter";
-
 import { ADMIN_FIELDS_lABELS } from "../const";
+
+import { CommonToolbar } from "@/features/commonToolbar";
 
 export const AdminList: FC = ({ ...props }) => {
   return (
-    <List {...props} exporter={globalExporter}>
+    <List {...props} actions={<CommonToolbar />}>
       <DataTable bulkActionButtons={false}>
         <DataTable.Col source="id" disableSort />
         <DataTable.Col

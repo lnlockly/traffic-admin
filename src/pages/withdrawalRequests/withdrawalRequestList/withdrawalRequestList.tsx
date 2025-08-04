@@ -8,7 +8,7 @@ import {
   TextField,
 } from "react-admin";
 
-import { globalExporter } from "@/model/utils/globalExporter";
+import { USERS_FIELDS_LABELS } from "@/pages/users/const";
 
 import {
   WITHDRAWAL_REQUESTS_FIELDS_LABELS,
@@ -16,14 +16,14 @@ import {
 } from "../const";
 
 import { WithdrawalRequestFilter } from "./ui/withdrawalRequestFilter/withdrawalRequestFilter";
-import { USERS_FIELDS_LABELS } from "@/features/users/const";
+import { CommonToolbar } from "@/features/commonToolbar";
 
 export const WithdrawalRequestList: FC = ({ ...props }) => {
   return (
     <List
       {...props}
-      filters={<WithdrawalRequestFilter />}
-      exporter={globalExporter}
+      filters={WithdrawalRequestFilter}
+      actions={<CommonToolbar haveFilters />}
     >
       <DataTable bulkActionButtons={false}>
         <DataTable.Col source="id" disableSort />
