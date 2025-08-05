@@ -19,6 +19,8 @@ import { AdminEdit } from "@/pages/admins/adminEdit/adminEdit";
 import { AdminList } from "@/pages/admins/adminList/adminList";
 import { BroadcastPage } from "@/pages/broadcastPage/broadcastPage";
 import { ConfigPage } from "@/pages/config/configPage";
+import { GamesList } from "@/pages/games/gamesList/gamesList";
+import { GamesShow } from "@/pages/games/gamesShow/gamesShow";
 import { TaskCreate } from "@/pages/tasks/taskCreate/taskCreate";
 import { TaskEdit } from "@/pages/tasks/taskEdit/taskEdit";
 import { TaskList } from "@/pages/tasks/taskList/taskList";
@@ -110,6 +112,13 @@ const App = () => {
         list={WithdrawalRequestList}
         show={WithdrawalRequestShow}
         options={{ label: "Запросы на вывод" }}
+        icon={RequestPageIcon}
+      />
+      <Resource
+        name="games"
+        list={GamesList}
+        show={GamesShow}
+        options={{ label: "Игры" }}
         icon={RequestPageIcon}
       />
     </Admin>

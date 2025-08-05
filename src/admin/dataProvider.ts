@@ -50,6 +50,19 @@ export const dataProvider: DataProvider = {
             status: params.filter?.status,
           },
         });
+      } else if (resource === "games") {
+        const { field = "createdAt", order = "DESC" } = params.sort || {};
+        response = await apiInstance.get(`/${resource}/pagination`, {
+          params: {
+            page,
+            limit: perPage,
+            id: params.filter?.id,
+            tgId: params.filter?.tgId,
+            username: params.filter?.username,
+            sortField: field,
+            sortOrder: order,
+          },
+        });
       } else {
         response = await apiInstance.get(`/${resource}/pagination`, {
           params: {
