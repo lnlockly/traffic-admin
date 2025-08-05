@@ -35,12 +35,12 @@ export const GamesList: FC = ({ ...props }) => {
         />
         <DataTable.Col
           source="multiplier"
-          label={GAMES_FIELDS_LABELS.AMOUNT}
+          label={GAMES_FIELDS_LABELS.MULTIPLIER}
           disableSort
         />
         <DataTable.Col
           source="result"
-          label={GAMES_FIELDS_LABELS.AMOUNT}
+          label={GAMES_FIELDS_LABELS.RESULT}
           disableSort
         />
         <DataTable.Col

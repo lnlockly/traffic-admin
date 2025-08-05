@@ -11,6 +11,8 @@ export const GAMES_FIELDS_LABELS = {
   USER: "Пользователь",
   GAME_USER_ID: "standoff ID",
   AMOUNT: "Сумма",
+  MULTIPLIER: "Множитель",
+  RESULT: "Результат",
   STATUS: "Статус",
   CREATED_AT: "Дата создания",
   TAKEN_BY_ADMIN_ID: "Кем взята в работу",
