@@ -40,10 +40,13 @@ export const GamesList: FC = ({ ...props }) => {
         />
         <DataTable.Col
           source="result"
-          label={GAMES_FIELDS_LABELS.CREATED_AT}
+          label={GAMES_FIELDS_LABELS.AMOUNT}
           disableSort
         />
-        <DataTable.Col source="createdAt" label={GAMES_FIELDS_LABELS.AMOUNT} />
+        <DataTable.Col
+          source="createdAt"
+          label={GAMES_FIELDS_LABELS.CREATED_AT}
+        />
       </DataTable>
     </List>
   );
