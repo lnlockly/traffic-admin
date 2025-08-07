@@ -13,6 +13,8 @@ import { BASE_API_URL } from "@/model/consts/common";
 
 import { ITEM_VIEW_FIELDS_lABELS, itemViewTypeChoices } from "../const";
 
+import { EditToolBarWithoutDelete } from "@/features/editToolBarWithoutDelete/editToolBarWithoutDelete";
+
 export const ItemViewEdit: FC = () => {
   // const { data: itemViews, isLoading } = useGetList("item-views", {
   //   pagination: { page: 1, perPage: 100 },
@@ -42,7 +44,7 @@ export const ItemViewEdit: FC = () => {
         return transformed;
       }}
     >
-      <SimpleForm>
+      <SimpleForm toolbar={<EditToolBarWithoutDelete />}>
         <TextInput
           source="name"
           label={ITEM_VIEW_FIELDS_lABELS.NAME}

@@ -11,6 +11,8 @@ import {
 
 import { MARKET_CELL_FIELDS_lABELS } from "../const";
 
+import { EditToolBarWithoutDelete } from "@/features/editToolBarWithoutDelete/editToolBarWithoutDelete";
+
 export const MarketCellEdit: FC = () => {
   const { data: itemViews, isLoading } = useGetList("item-views", {
     pagination: { page: 1, perPage: 100 },
@@ -30,7 +32,7 @@ export const MarketCellEdit: FC = () => {
         isPurchasable: data.isPurchasable,
       })}
     >
-      <SimpleForm>
+      <SimpleForm toolbar={<EditToolBarWithoutDelete />}>
         <AutocompleteInput
           source="itemViewId"
           label={MARKET_CELL_FIELDS_lABELS.ITEM}

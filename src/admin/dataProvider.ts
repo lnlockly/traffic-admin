@@ -83,8 +83,7 @@ export const dataProvider: DataProvider = {
       let response;
       if (resource === "users") {
         response = await apiInstance.get(`/${resource}/by-id/${params.id}`);
-      }
-      if (resource === "market-cells") {
+      } else if (resource === "market-cells") {
         response = await apiInstance.get(`/${resource}/${params.id}/for-admin`);
       } else {
         response = await apiInstance.get(`/${resource}/${params.id}`);
