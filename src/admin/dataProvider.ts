@@ -83,6 +83,9 @@ export const dataProvider: DataProvider = {
       let response;
       if (resource === "users") {
         response = await apiInstance.get(`/${resource}/by-id/${params.id}`);
+      }
+      if (resource === "market-cells") {
+        response = await apiInstance.get(`/${resource}/${params.id}/for-admin`);
       } else {
         response = await apiInstance.get(`/${resource}/${params.id}`);
       }
@@ -93,13 +96,71 @@ export const dataProvider: DataProvider = {
   update: (resource, params) =>
     withErrorHandler(async () => {
       const { id, data } = params;
-      const response = await apiInstance.put(`/${resource}/${id}`, data);
+      let response;
+      if (resource === "item-views") {
+        const formData = new FormData();
+
+        const data = params.data;
+
+        formData.append("name", data.name);
+        formData.append("description", data.description);
+        formData.append("type", data.type);
+
+        // Если есть новый файл, отправляем img
+        if (data.img && data.img.rawFile instanceof File) {
+          formData.append("img", data.img.rawFile);
+        }
+
+        // Кейс с атрибутами
+        // if (data.type === ITEM_TYPE.CASE) {
+        //   formData.append("attributes", JSON.stringify(data.attributes));
+        // }
+
+        response = await apiInstance.put(`/${resource}/${id}`, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+      } else {
+        response = await apiInstance.put(`/${resource}/${id}`, data);
+      }
+
       return { data: response.data };
     }),
 
   create: (resource, params) =>
     withErrorHandler(async () => {
-      const response = await apiInstance.post(`/${resource}`, params.data);
+      let response;
+      if (resource === "item-views") {
+        const formData = new FormData();
+
+        const data = params.data;
+
+        formData.append("name", data.name);
+        formData.append("description", data.description);
+        formData.append("type", data.type);
+        formData.append("img", data.img.rawFile);
+
+        // Кейс с атрибутами
+        // if (data.type === ITEM_TYPE.CASE && Array.isArray(data.items)) {
+        //   const itemsWithChances = data.itemsWithChances.map((item: any) => ({
+        //     itemViewId: item.itemViewId,
+        //     chance: parseFloat(item.chance),
+        //   }));
+
+        //   const attributes = { itemsWithChances };
+        //   formData.append("attributes", JSON.stringify(attributes));
+        // }
+
+        response = await apiInstance.post(`/${resource}`, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+      } else {
+        response = await apiInstance.post(`/${resource}`, params.data);
+      }
+
       return { data: response.data };
     }),
 

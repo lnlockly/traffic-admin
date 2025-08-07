@@ -7,7 +7,7 @@ import { CommonToolbar } from "@/features/commonToolbar";
 
 export const TaskList: FC = ({ ...props }) => {
   return (
-    <List {...props} actions={<CommonToolbar />}>
+    <List {...props} actions={<CommonToolbar haveCreate />}>
       <DataTable bulkActionButtons={false}>
         <DataTable.Col source="id" disableSort />
         <DataTable.Col
