@@ -39,6 +39,18 @@ export const dataProvider: DataProvider = {
             username: params.filter?.username,
           },
         });
+      } else if (resource === "purchases") {
+        response = await apiInstance.get(`/${resource}/pagination`, {
+          params: {
+            page,
+            limit: perPage,
+            id: params.filter?.id,
+            tgId: params.filter?.tgId,
+            username: params.filter?.username,
+            marketCellId: params.filter?.marketCellId,
+            itemName: params.filter?.itemName,
+          },
+        });
       } else if (resource === "withdrawal-requests") {
         response = await apiInstance.get(`/${resource}/pagination`, {
           params: {
