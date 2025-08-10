@@ -36,6 +36,7 @@ import { TaskCreate } from "@/pages/tasks/taskCreate/taskCreate";
 import { TaskEdit } from "@/pages/tasks/taskEdit/taskEdit";
 import { TaskList } from "@/pages/tasks/taskList/taskList";
 import { TaskShow } from "@/pages/tasks/taskShow/taskShow";
+import { TransactionList } from "@/pages/transaction/transactionList/transactionList";
 import { UserEdit } from "@/pages/users/userEdit/userEdit";
 import { UserList } from "@/pages/users/userList/userList";
 import { UserShow } from "@/pages/users/userShow/userShow";
@@ -120,6 +121,12 @@ const App = () => {
             name="purchases"
             list={PurchaseList}
             options={{ label: "Покупки" }}
+            icon={ShoppingCartIcon}
+          />
+          <Resource
+            name="transactions"
+            list={TransactionList}
+            options={{ label: "Транзакции" }}
             icon={ShoppingCartIcon}
           />
         </>
