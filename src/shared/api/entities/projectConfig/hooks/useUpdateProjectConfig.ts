@@ -17,6 +17,7 @@ export const useUpdateProjectConfig = () => {
       notify(err.response?.data.message, { type: "error" });
     },
     onSuccess: () => {
+      notify("Обновление успешно", { type: "success" });
       client.invalidateQueries({ queryKey: [QUERY_KEYS.PROJECT_CONFIG.GET] });
     },
   });

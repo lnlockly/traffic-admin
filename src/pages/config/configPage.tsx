@@ -23,6 +23,7 @@ export const ConfigPage: FC = () => {
           houseEdge: projectConfig.houseEdge,
           minWithdrawAmount: projectConfig.minWithdrawAmount,
           referralPercentBonus: projectConfig.referralPercentBonus,
+          minGoldDepositAmount: projectConfig.minGoldDepositAmount,
         }}
       >
         <NumberInput
@@ -37,9 +38,13 @@ export const ConfigPage: FC = () => {
         />
         <NumberInput
           source="referralPercentBonus"
-          label="Бонус от ставок для рефералов в %"
+          label="Бонус от пополнения для рефералов в %"
           parse={(value) => (value != null ? value / 100 : null)}
           format={(value) => (value != null ? value * 100 : null)}
+        />
+        <NumberInput
+          source="minGoldDepositAmount"
+          label="Минимальная сумма пополнения золота"
         />
       </SimpleForm>
     </ResourceContextProvider>
