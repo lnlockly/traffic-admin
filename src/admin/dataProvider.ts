@@ -3,6 +3,8 @@ import type { DataProvider } from "react-admin";
 
 import apiInstance from "@/api/axiosInstance";
 
+import { ITEM_TYPE } from "@/entities/itemView/model/type/itemView.type";
+
 function extractErrorMessage(error: AxiosError<{ message: string }>): string {
   const raw = error?.response?.data?.message || error?.message;
 
@@ -130,6 +132,7 @@ export const dataProvider: DataProvider = {
         formData.append("name", data.name);
         formData.append("description", data.description);
         formData.append("type", data.type);
+        formData.append("rarity", data.rarity);
 
         // Если есть новый файл, отправляем img
         if (data.img && data.img.rawFile instanceof File) {
@@ -137,9 +140,9 @@ export const dataProvider: DataProvider = {
         }
 
         // Кейс с атрибутами
-        // if (data.type === ITEM_TYPE.CASE) {
-        //   formData.append("attributes", JSON.stringify(data.attributes));
-        // }
+        if (data.type === ITEM_TYPE.CASE) {
+          formData.append("attributes", JSON.stringify(data.attributes));
+        }
 
         response = await apiInstance.put(`/${resource}/${id}`, formData, {
           headers: {
@@ -164,18 +167,19 @@ export const dataProvider: DataProvider = {
         formData.append("name", data.name);
         formData.append("description", data.description);
         formData.append("type", data.type);
+        formData.append("rarity", data.rarity);
         formData.append("img", data.img.rawFile);
 
         // Кейс с атрибутами
-        // if (data.type === ITEM_TYPE.CASE && Array.isArray(data.items)) {
-        //   const itemsWithChances = data.itemsWithChances.map((item: any) => ({
-        //     itemViewId: item.itemViewId,
-        //     chance: parseFloat(item.chance),
-        //   }));
+        if (data.type === ITEM_TYPE.CASE && Array.isArray(data.items)) {
+          const itemsWithChances = data.itemsWithChances.map((item: any) => ({
+            itemViewId: item.itemViewId,
+            chance: parseFloat(item.chance),
+          }));
 
-        //   const attributes = { itemsWithChances };
-        //   formData.append("attributes", JSON.stringify(attributes));
-        // }
+          const attributes = { itemsWithChances };
+          formData.append("attributes", JSON.stringify(attributes));
+        }
 
         response = await apiInstance.post(`/${resource}`, formData, {
           headers: {

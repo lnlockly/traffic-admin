@@ -2,3 +2,13 @@ export enum ITEM_TYPE {
   CASE = "CASE",
   SKIN = "SKIN",
 }
+
+export enum ITEM_RARITY {
+  COMMON = "COMMON",
+  UNCOMMON = "UNCOMMON",
+  RARE = "RARE",
+  EPIC = "EPIC",
+  LEGENDARY = "LEGENDARY",
+  ARCANE = "ARCANE",
+  NAMELESS = "NAMELESS",
+}

@@ -11,19 +11,17 @@ import {
 
 import { BASE_API_URL } from "@/model/consts/common";
 
-import { ITEM_VIEW_FIELDS_lABELS, itemViewTypeChoices } from "../const";
+import {
+  ITEM_VIEW_FIELDS_lABELS,
+  itemViewRarityChoices,
+  itemViewTypeChoices,
+} from "../const";
+import { SelectCaseItems } from "../ui/selectCaseItems/selectCaseItems";
 
+import { ITEM_TYPE } from "@/entities/itemView/model/type/itemView.type";
 import { EditToolBarWithoutDelete } from "@/features/editToolBarWithoutDelete/editToolBarWithoutDelete";
 
 export const ItemViewEdit: FC = () => {
-  // const { data: itemViews, isLoading } = useGetList("item-views", {
-  //   pagination: { page: 1, perPage: 100 },
-  //   sort: { field: "name", order: "ASC" },
-  // });
-
-  // const itemChoices =
-  //   itemViews?.map((item) => ({ id: item.id, name: item.name })) || [];
-
   return (
     <Edit
       transform={(data) => {
@@ -31,15 +29,16 @@ export const ItemViewEdit: FC = () => {
           name: data.name,
           description: data.description,
           type: data.type,
+          rarity: data.rarity,
         };
         if (data.imgUrl?.rawFile instanceof File) {
           transformed.img = data.imgUrl;
         }
-        // if (data.type === ITEM_TYPE.CASE) {
-        //   transformed.attributes = {
-        //     itemsWithChances: data.attributes.itemsWithChances,
-        //   };
-        // }
+        if (data.type === ITEM_TYPE.CASE) {
+          transformed.attributes = {
+            itemsWithChances: data.attributes.itemsWithChances,
+          };
+        }
 
         return transformed;
       }}
@@ -61,6 +60,13 @@ export const ItemViewEdit: FC = () => {
           choices={itemViewTypeChoices}
           label={ITEM_VIEW_FIELDS_lABELS.TYPE}
           validate={required()}
+        />
+        <SelectInput
+          required
+          source="rarity"
+          choices={itemViewRarityChoices}
+          label={ITEM_VIEW_FIELDS_lABELS.RARITY}
+          defaultValue={itemViewRarityChoices[0].id}
         />
 
         <ImageInput
@@ -95,35 +101,7 @@ export const ItemViewEdit: FC = () => {
         >
           <ImageField source="src" title="title" />
         </ImageInput>
-
-        {/* <FormDataConsumer>
-          {({ formData }) =>
-            formData.type === ITEM_TYPE.CASE && (
-              <ArrayInput
-                source="attributes.itemsWithChances"
-                label={ITEM_VIEW_FIELDS_lABELS.CASE_ITEMS}
-              >
-                <SimpleFormIterator inline>
-                  <AutocompleteInput
-                    source="itemViewId"
-                    label={ITEM_VIEW_FIELDS_lABELS.ITEM_VIEW}
-                    choices={itemChoices}
-                    optionText="name"
-                    optionValue="id"
-                    isLoading={isLoading}
-                    validate={required("Предмет обязателен")}
-                  />
-                  <TextInput
-                    source="chance"
-                    label={ITEM_VIEW_FIELDS_lABELS.CHANCE}
-                    type="number"
-                    validate={required("Шанс обязателен")}
-                  />
-                </SimpleFormIterator>
-              </ArrayInput>
-            )
-          }
-        </FormDataConsumer> */}
+        <SelectCaseItems source="attributes.itemsWithChances" />
       </SimpleForm>
     </Edit>
   );
