@@ -27,5 +27,5 @@ export const ITEM_VIEW_FIELDS_lABELS = {
   ATTRIBUTES: "Аттрибуты",
   CASE_ITEMS: "Содержимое кейса",
   ITEM_VIEW: "Предмет",
-  CHANCE: "Шанс",
+  CHANCE: "Шанс в %",
 };
