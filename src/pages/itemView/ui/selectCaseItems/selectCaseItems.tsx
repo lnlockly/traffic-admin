@@ -31,13 +31,23 @@ export const SelectCaseItems: FC<Props> = ({ source }) => {
       ?.map((item) => ({ id: item.id, name: item.name }))
       .filter((item) => item.id !== record?.id) || [];
 
+  const validateCaseItems = (items: any[]) => {
+    if (items.length === 0) return "Предметы обязательны";
+
+    const total = items.reduce((sum, item) => sum + (item.chance || 0), 0);
+    if (total !== 100) {
+      return `Сумма шансов должна равняться 100% (текущая сумма: ${total}%)`;
+    }
+  };
   return (
     <FormDataConsumer>
       {({ formData }) =>
         formData.type === ITEM_TYPE.CASE && (
           <ArrayInput
+            required
             source={source}
             label={ITEM_VIEW_FIELDS_lABELS.CASE_ITEMS}
+            validate={validateCaseItems}
           >
             <SimpleFormIterator inline>
               <AutocompleteInput
