@@ -4,10 +4,11 @@ import {
   DataTable,
   List,
   ReferenceField,
+  SelectField,
   TextField,
 } from "react-admin";
 
-import { MARKET_CELL_FIELDS_lABELS } from "../const";
+import { MARKET_CELL_FIELDS_lABELS, marketCellTagsChoices } from "../const";
 
 import { CommonToolbar } from "@/features/commonToolbar";
 
@@ -39,6 +40,18 @@ export const MarketCellList: FC = ({ ...props }) => {
           source="initialSupply"
           disableSort
           label={MARKET_CELL_FIELDS_lABELS.INITIAL_SUPPLY}
+        />
+        <DataTable.Col
+          source="tag"
+          disableSort
+          label={MARKET_CELL_FIELDS_lABELS.TAG}
+        >
+          <SelectField source="tag" choices={marketCellTagsChoices} />
+        </DataTable.Col>
+        <DataTable.Col
+          source="discountPercentage"
+          disableSort
+          label={MARKET_CELL_FIELDS_lABELS.DISCOUNT_PERCENTAGE}
         />
         <DataTable.Col
           source="isPurchasable"

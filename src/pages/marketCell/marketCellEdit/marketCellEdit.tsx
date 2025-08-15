@@ -3,14 +3,19 @@ import {
   AutocompleteInput,
   BooleanInput,
   Edit,
+  FormDataConsumer,
   NumberInput,
+  SelectInput,
   SimpleForm,
+  maxValue,
+  minValue,
   required,
   useGetList,
 } from "react-admin";
 
-import { MARKET_CELL_FIELDS_lABELS } from "../const";
+import { MARKET_CELL_FIELDS_lABELS, marketCellTagsChoices } from "../const";
 
+import { MARKET_CELL_TAGS } from "@/entities/marketCell/model/type/marketCell.type";
 import { EditToolBarWithoutDelete } from "@/features/editToolBarWithoutDelete/editToolBarWithoutDelete";
 
 export const MarketCellEdit: FC = () => {
@@ -60,6 +65,26 @@ export const MarketCellEdit: FC = () => {
           min={0}
           label={MARKET_CELL_FIELDS_lABELS.ITEMS_LEFT}
         />
+
+        <SelectInput
+          source="tag"
+          choices={marketCellTagsChoices}
+          label={MARKET_CELL_FIELDS_lABELS.TAG}
+        />
+        <FormDataConsumer>
+          {({ formData, ...rest }) =>
+            formData?.tag === MARKET_CELL_TAGS.DISCOUNT && (
+              <NumberInput
+                source="discountPercentage"
+                min={0}
+                max={100}
+                label={MARKET_CELL_FIELDS_lABELS.DISCOUNT_PERCENTAGE}
+                validate={[required(), minValue(0), maxValue(100)]}
+                {...rest}
+              />
+            )
+          }
+        </FormDataConsumer>
         <BooleanInput
           source="isPurchasable"
           label={MARKET_CELL_FIELDS_lABELS.IS_PURCHASABLE}
