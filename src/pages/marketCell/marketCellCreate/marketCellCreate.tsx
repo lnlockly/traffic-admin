@@ -1,6 +1,7 @@
 import type { FC } from "react";
 import {
   AutocompleteInput,
+  BooleanInput,
   Create,
   FormDataConsumer,
   NumberInput,
@@ -43,12 +44,24 @@ export const MarketCellCreate: FC = ({ ...props }) => {
           label={MARKET_CELL_FIELDS_lABELS.PRICE}
           min={0}
         />
-        <NumberInput
-          required
-          source="initialSupply"
-          label={MARKET_CELL_FIELDS_lABELS.INITIAL_SUPPLY}
-          min={0}
+        <BooleanInput
+          source="isInfinity"
+          label={MARKET_CELL_FIELDS_lABELS.IS_INFINITY}
         />
+        <FormDataConsumer>
+          {({ formData, ...rest }) =>
+            formData?.isInfinity === false && (
+              <NumberInput
+                required
+                source="initialSupply"
+                label={MARKET_CELL_FIELDS_lABELS.INITIAL_SUPPLY}
+                min={0}
+                {...rest}
+              />
+            )
+          }
+        </FormDataConsumer>
+
         <SelectInput
           source="tag"
           choices={marketCellTagsChoices}

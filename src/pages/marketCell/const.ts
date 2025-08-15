@@ -10,6 +10,7 @@ export const MARKET_CELL_FIELDS_lABELS = {
   PRICE: "Цена",
   INITIAL_SUPPLY: "Изначальное количество",
   TAG: "Тег",
+  IS_INFINITY: "Бесконечно?",
   DISCOUNT_PERCENTAGE: "Процент скидки в %",
   ITEMS_LEFT: "Осталось",
   IS_PURCHASABLE: "Можно купить?",

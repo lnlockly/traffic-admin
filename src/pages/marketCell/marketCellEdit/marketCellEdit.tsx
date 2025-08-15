@@ -37,6 +37,7 @@ export const MarketCellEdit: FC = () => {
         isPurchasable: data.isPurchasable,
         tag: data.tag,
         discountPercentage: data.discountPercentage,
+        isInfinity: data.isInfinity,
       })}
     >
       <SimpleForm toolbar={<EditToolBarWithoutDelete />}>
@@ -55,12 +56,23 @@ export const MarketCellEdit: FC = () => {
           label={MARKET_CELL_FIELDS_lABELS.PRICE}
           min={0}
         />
-        <NumberInput
-          required
-          source="initialSupply"
-          label={MARKET_CELL_FIELDS_lABELS.INITIAL_SUPPLY}
-          min={0}
+        <BooleanInput
+          source="isInfinity"
+          label={MARKET_CELL_FIELDS_lABELS.IS_INFINITY}
         />
+        <FormDataConsumer>
+          {({ formData, ...rest }) =>
+            formData?.isInfinity === false && (
+              <NumberInput
+                required
+                source="initialSupply"
+                label={MARKET_CELL_FIELDS_lABELS.INITIAL_SUPPLY}
+                min={0}
+                {...rest}
+              />
+            )
+          }
+        </FormDataConsumer>
         <NumberInput
           required
           source="itemsLeft"

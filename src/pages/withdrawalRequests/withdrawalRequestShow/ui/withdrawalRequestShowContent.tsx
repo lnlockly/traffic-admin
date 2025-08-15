@@ -26,7 +26,7 @@ import { WITHDRAW_STATUS } from "@/entities/withdrawalRequest/model/types/withdr
 
 export const WithdrawalRequestShowContent: FC = () => {
   const record = useRecordContext();
-  const { mutate: changeStatus } = useChangeStatus();
+  const { mutate: changeStatus, isPending } = useChangeStatus();
 
   const isInProgress = record?.status === WITHDRAW_STATUS.IN_PROGRESS;
   const isFinished =
@@ -48,6 +48,14 @@ export const WithdrawalRequestShowContent: FC = () => {
       status,
       comment: status === WITHDRAW_STATUS.CANCELED ? rejectComment : undefined,
     });
+    // apiInstance.put(
+    //   `withdrawal-requests/change-status/${record.id.toString()}`,
+    //   {
+    //     status: status,
+    //     comment:
+    //       status === WITHDRAW_STATUS.CANCELED ? rejectComment : undefined,
+    //   },
+    // );
   };
   return (
     <>
@@ -119,6 +127,7 @@ export const WithdrawalRequestShowContent: FC = () => {
               <Button
                 variant="contained"
                 color="primary"
+                disabled={isPending}
                 onClick={() =>
                   onHandleClick(
                     isTakenByAdminId === adminId
@@ -132,7 +141,7 @@ export const WithdrawalRequestShowContent: FC = () => {
               <Button
                 variant="contained"
                 color="success"
-                disabled={isNotRedacting}
+                disabled={isNotRedacting || isPending}
                 onClick={() => onHandleClick(WITHDRAW_STATUS.CONFIRMED)}
               >
                 Подтвердить
@@ -140,7 +149,7 @@ export const WithdrawalRequestShowContent: FC = () => {
               <Button
                 variant="contained"
                 color="error"
-                disabled={isNotRedacting || rejectComment === ""}
+                disabled={isNotRedacting || rejectComment === "" || isPending}
                 onClick={() => onHandleClick(WITHDRAW_STATUS.CANCELED)}
               >
                 Отказать

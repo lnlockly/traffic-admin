@@ -54,6 +54,13 @@ export const MarketCellList: FC = ({ ...props }) => {
           label={MARKET_CELL_FIELDS_lABELS.DISCOUNT_PERCENTAGE}
         />
         <DataTable.Col
+          source="isInfinity"
+          disableSort
+          label={MARKET_CELL_FIELDS_lABELS.IS_INFINITY}
+        >
+          <BooleanField source="isInfinity" />
+        </DataTable.Col>
+        <DataTable.Col
           source="isPurchasable"
           disableSort
           label={MARKET_CELL_FIELDS_lABELS.IS_PURCHASABLE}
