@@ -35,6 +35,8 @@ export const MarketCellEdit: FC = () => {
         initialSupply: data.initialSupply,
         itemsLeft: data.itemsLeft,
         isPurchasable: data.isPurchasable,
+        tag: data.tag,
+        discountPercentage: data.discountPercentage,
       })}
     >
       <SimpleForm toolbar={<EditToolBarWithoutDelete />}>
