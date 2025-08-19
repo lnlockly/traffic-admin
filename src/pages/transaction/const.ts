@@ -8,6 +8,7 @@ export const transactionTypesChoices = [
   { id: TRANSACTION_TYPE.MARKET, name: "Покупка" },
   { id: TRANSACTION_TYPE.REFERRAL_BONUS, name: "Реф бонус" },
   { id: TRANSACTION_TYPE.WITHDRAWAL, name: "Вывод" },
+  { id: TRANSACTION_TYPE.EXCHANGE, name: "Обмен" },
 ];
 export const transactionStatusChoices = [
   { id: TRANSACTION_STATUS.PENDING, name: "В ожидании" },
@@ -17,8 +18,7 @@ export const transactionStatusChoices = [
 export const TRANSACTION_FIELDS_lABELS = {
   TITLE: "Название",
   AMOUNT: "Сумма",
-  WITHDRAWAL_REQUEST_ID: "ID вывода",
-  PURCHASE_ID: "ID покупки",
+  ELEMENT_ID: "ID элемента",
   TX_ID: "ID транзакции в шлюзе",
   TYPE: "Тип",
   STATUS: "Статус",
