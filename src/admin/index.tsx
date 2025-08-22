@@ -8,6 +8,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
 import StorefrontIcon from "@mui/icons-material/Storefront";
 import TaskIcon from "@mui/icons-material/Task";
+import { deepmerge } from "@mui/utils";
 import {
   Admin,
   CustomRoutes,
@@ -15,6 +16,7 @@ import {
   Menu,
   Resource,
   ShowGuesser,
+  defaultDarkTheme,
 } from "react-admin";
 import { Route } from "react-router-dom";
 
@@ -50,6 +52,28 @@ import { useInitAdmin } from "./model/hooks/useInitAdminRole";
 import { useAdminStore } from "@/entities/admin/model/store/admin.store";
 import { ADMIN_ROLES } from "@/entities/admin/model/types/admin.type";
 
+const theme = deepmerge(defaultDarkTheme, {
+  components: {
+    RaCreateButton: {
+      styleOverrides: {
+        root: {
+          "&.RaCreateButton-floating": {
+            display: "inline-flex",
+            position: "relative",
+            top: "auto",
+            right: "auto",
+            left: "auto",
+            bottom: "auto",
+            width: "22px",
+            height: "22px",
+            "min-height": "auto",
+          },
+        },
+      },
+    },
+  },
+});
+
 const MyMenu = () => {
   const role = useAdminStore((state) => state.role);
   return (
@@ -80,6 +104,7 @@ const App = () => {
   const role = useAdminStore((state) => state.role);
   return (
     <Admin
+      theme={theme}
       layout={MyLayout}
       authProvider={authProvider}
       dataProvider={dataProvider}

@@ -9,9 +9,22 @@ interface Props {
 }
 export const CommonToolbar: FC<Props> = ({ haveFilters, haveCreate }) => {
   return (
-    <TopToolbar>
+    <TopToolbar
+      sx={{
+        display: "flex",
+        alignItems: "center",
+      }}
+    >
       {haveFilters && <FilterButton />}
-      {haveCreate && <CreateButton />}
+      {haveCreate && (
+        <CreateButton
+          sx={{
+            "@media (max-width: 900px)": {
+              display: "none",
+            },
+          }}
+        />
+      )}
       <CustomExportBtn />
     </TopToolbar>
   );
