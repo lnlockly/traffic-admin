@@ -19,10 +19,14 @@ import { useChangeStatus } from "@/api/entities/withdrawalRequests";
 import {
   WITHDRAWAL_REQUESTS_FIELDS_LABELS,
   withdrawalRequestChoices,
+  withdrawalRequestTypeChoices,
 } from "../../const";
 
 import { useAdminStore } from "@/entities/admin/model/store/admin.store";
-import { WITHDRAW_STATUS } from "@/entities/withdrawalRequest/model/types/withdrawalRequest.type";
+import {
+  WITHDRAW_STATUS,
+  WITHDRAW_TYPE,
+} from "@/entities/withdrawalRequest/model/types/withdrawalRequest.type";
 
 export const WithdrawalRequestShowContent: FC = () => {
   const record = useRecordContext();
@@ -78,6 +82,28 @@ export const WithdrawalRequestShowContent: FC = () => {
           choices={withdrawalRequestChoices}
           label={WITHDRAWAL_REQUESTS_FIELDS_LABELS.STATUS}
         />
+        <SelectField
+          source="type"
+          choices={withdrawalRequestTypeChoices}
+          label={WITHDRAWAL_REQUESTS_FIELDS_LABELS.TYPE}
+        />
+
+        {record?.type === WITHDRAW_TYPE.SKIN && (
+          <ReferenceField
+            source="itemViewId"
+            reference="item-views"
+            label={WITHDRAWAL_REQUESTS_FIELDS_LABELS.ITEM_VIEW_ID}
+          >
+            <TextField source="name" />
+          </ReferenceField>
+        )}
+        {record?.type === WITHDRAW_TYPE.SKIN && (
+          <TextField
+            source="skinPrice"
+            label={WITHDRAWAL_REQUESTS_FIELDS_LABELS.SKIN_PRICE}
+          />
+        )}
+
         <ReferenceField
           source="takenByAdminId"
           reference="admins"

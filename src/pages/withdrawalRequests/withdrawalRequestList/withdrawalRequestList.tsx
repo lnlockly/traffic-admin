@@ -13,6 +13,7 @@ import { USERS_FIELDS_LABELS } from "@/pages/users/const";
 import {
   WITHDRAWAL_REQUESTS_FIELDS_LABELS,
   withdrawalRequestChoices,
+  withdrawalRequestTypeChoices,
 } from "../const";
 
 import { WithdrawalRequestFilter } from "./ui/withdrawalRequestFilter/withdrawalRequestFilter";
@@ -56,6 +57,13 @@ export const WithdrawalRequestList: FC = ({ ...props }) => {
           disableSort
         >
           <SelectField source="status" choices={withdrawalRequestChoices} />
+        </DataTable.Col>
+        <DataTable.Col
+          source="type"
+          label={WITHDRAWAL_REQUESTS_FIELDS_LABELS.TYPE}
+          disableSort
+        >
+          <SelectField source="type" choices={withdrawalRequestTypeChoices} />
         </DataTable.Col>
         <DataTable.Col
           source="takenByAdminId"

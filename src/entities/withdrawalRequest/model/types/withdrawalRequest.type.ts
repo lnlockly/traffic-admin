@@ -4,3 +4,8 @@ export enum WITHDRAW_STATUS {
   CONFIRMED = "CONFIRMED",
   CANCELED = "CANCELED",
 }
+
+export enum WITHDRAW_TYPE {
+  SKIN = "SKIN",
+  GOLD = "GOLD",
+}
