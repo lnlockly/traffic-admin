@@ -10,6 +10,6 @@ export const PurchaseFilter = [
     source="marketCellId"
     label={PURCHASE_FIELDS_lABELS.MARKET_CELL_ID}
   />,
-  <TextInput source="tgId" label={USERS_FIELDS_LABELS.TG_ID} />,
+  // <TextInput source="tgId" label={USERS_FIELDS_LABELS.TG_ID} />,
   <TextInput source="username" label={USERS_FIELDS_LABELS.USERNAME} />,
 ];

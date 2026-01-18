@@ -1,5 +1,5 @@
 import type { FC } from "react";
-import { Edit, NumberInput, SimpleForm, TextInput } from "react-admin";
+import { Edit, NumberInput, SimpleForm } from "react-admin";
 
 import { USERS_FIELDS_LABELS } from "../const";
 
@@ -22,9 +22,12 @@ export const UserEdit: FC<Props> = ({ ...props }) => {
       })}
     >
       <SimpleForm>
-        <NumberInput source="balance" label={USERS_FIELDS_LABELS.ACCUMULATED_BALANCE} />
-
         <NumberInput
+          source="balance"
+          label={USERS_FIELDS_LABELS.ACCUMULATED_BALANCE}
+        />
+
+        {/* <NumberInput
           source="totalDeposited"
           label={USERS_FIELDS_LABELS.TOTAL_DEPOSITED}
         />
@@ -48,7 +51,7 @@ export const UserEdit: FC<Props> = ({ ...props }) => {
         <TextInput
           source="referredByCode"
           label={USERS_FIELDS_LABELS.REFERRED_BY_CODE}
-        />
+        /> */}
       </SimpleForm>
     </Edit>
   );

@@ -13,7 +13,6 @@ import authProvider from "./authProvider";
 import { dataProvider } from "./dataProvider";
 import { i18nProvider } from "./i18nProvider";
 import { useInitAdmin } from "./model/hooks/useInitAdminRole";
-import { useAdminStore } from "@/entities/admin/model/store/admin.store";
 
 const theme = deepmerge(defaultDarkTheme, {
   components: {
@@ -38,7 +37,7 @@ const theme = deepmerge(defaultDarkTheme, {
 });
 
 const MyMenu = () => {
-  const role = useAdminStore((state) => state.role);
+  // const role = useAdminStore((state) => state.role);
   return (
     <Menu>
       {/* <Menu.ResourceItems />
