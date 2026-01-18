@@ -13,7 +13,6 @@ import { USERS_FIELDS_LABELS } from "@/pages/users/const";
 import {
   WITHDRAWAL_REQUESTS_FIELDS_LABELS,
   withdrawalRequestChoices,
-  withdrawalRequestTypeChoices,
 } from "../const";
 
 import { WithdrawalRequestFilter } from "./ui/withdrawalRequestFilter/withdrawalRequestFilter";
@@ -33,19 +32,15 @@ export const WithdrawalRequestList: FC = ({ ...props }) => {
           disableSort
           label={USERS_FIELDS_LABELS.USERNAME}
         >
-          <ReferenceField source="userId" reference="users">
+          <ReferenceField source="userId" reference="user">
             <FunctionField
               render={(record) =>
-                record.username ? `@${record.username}` : `${record.tgId}`
+                record.username ? `@${record.username}` : `${record.telegramId}`
               }
             />
           </ReferenceField>
         </DataTable.Col>
-        <DataTable.Col
-          source="gameUserId"
-          label={WITHDRAWAL_REQUESTS_FIELDS_LABELS.GAME_USER_ID}
-          disableSort
-        />
+
         <DataTable.Col
           source="amount"
           label={WITHDRAWAL_REQUESTS_FIELDS_LABELS.AMOUNT}
@@ -58,19 +53,13 @@ export const WithdrawalRequestList: FC = ({ ...props }) => {
         >
           <SelectField source="status" choices={withdrawalRequestChoices} />
         </DataTable.Col>
-        <DataTable.Col
-          source="type"
-          label={WITHDRAWAL_REQUESTS_FIELDS_LABELS.TYPE}
-          disableSort
-        >
-          <SelectField source="type" choices={withdrawalRequestTypeChoices} />
-        </DataTable.Col>
+
         <DataTable.Col
           source="takenByAdminId"
           label={WITHDRAWAL_REQUESTS_FIELDS_LABELS.TAKEN_BY_ADMIN_ID}
           disableSort
         >
-          <ReferenceField source="takenByAdminId" reference="admins">
+          <ReferenceField source="takenByAdminId" reference="user">
             <TextField source="username" />
           </ReferenceField>
         </DataTable.Col>

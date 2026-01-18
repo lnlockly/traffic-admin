@@ -3,7 +3,7 @@ import axios from "axios";
 import { ACCESS_TOKEN, BASE_API_URL } from "@/model/consts/common";
 
 const apiInstance = axios.create({
-  baseURL: `${BASE_API_URL}/api`,
+  baseURL: `${BASE_API_URL}`,
   // withCredentials: true,
 });
 

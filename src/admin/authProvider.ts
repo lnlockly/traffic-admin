@@ -16,14 +16,13 @@ const authProvider = {
     password: string;
   }) => {
     try {
-      const { data } = await apiInstance.post<{ token: string }>(
-        "/auth/login-admin",
-        {
-          username,
-          password,
-        },
-      );
-      localStorage.setItem(ACCESS_TOKEN, data.token);
+      const { data } = await apiInstance.post<{
+        data: { accessToken: string; refreshToken: string };
+      }>("/auth/login-admin", {
+        username,
+        password,
+      });
+      localStorage.setItem(ACCESS_TOKEN, data.data.accessToken);
       return Promise.resolve();
     } catch {
       return Promise.reject(new Error("Invalid username or password"));
@@ -73,13 +72,12 @@ const authProvider = {
     }
 
     try {
-      const { data } = await apiInstance.get<{ role: ADMIN_ROLES; id: string }>(
-        "/auth/me",
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        },
-      );
-      return Promise.resolve({ role: data.role, id: data.id });
+      const { data } = await apiInstance.get<{
+        data: { role: ADMIN_ROLES; id: string };
+      }>("/auth/me", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      return Promise.resolve({ role: data.data.role, id: data.data.id });
     } catch {
       return Promise.reject();
     }

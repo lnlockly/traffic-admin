@@ -8,7 +8,7 @@ import {
 
 export const WithdrawalRequestFilter = [
   <TextInput source="id" label="id вывода" />,
-  <TextInput source="tgId" label={USERS_FIELDS_LABELS.TG_ID} />,
+
   <TextInput source="username" label={USERS_FIELDS_LABELS.USERNAME} />,
   <SelectInput
     source="status"

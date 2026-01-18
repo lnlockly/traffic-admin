@@ -26,7 +26,7 @@ export const TransactionList: FC = ({ ...props }) => {
       case TRANSACTION_TYPE.DEPOSIT:
         return "deposits";
       case TRANSACTION_TYPE.WITHDRAWAL:
-        return "withdrawal-requests";
+        return "withdrawal";
       case TRANSACTION_TYPE.MARKET:
         return "purchases";
 
@@ -67,7 +67,7 @@ export const TransactionList: FC = ({ ...props }) => {
           disableSort
           label={TRANSACTION_FIELDS_lABELS.TO_USER_ID}
         >
-          <ReferenceField source="toUserId" reference="users">
+          <ReferenceField source="toUserId" reference="user">
             <FunctionField
               render={(record) =>
                 record.username ? `@${record.username}` : `${record.tgId}`
@@ -80,7 +80,7 @@ export const TransactionList: FC = ({ ...props }) => {
           disableSort
           label={TRANSACTION_FIELDS_lABELS.FROM_USER_ID}
         >
-          <ReferenceField source="fromUserId" reference="users">
+          <ReferenceField source="fromUserId" reference="user">
             <FunctionField
               render={(record) =>
                 record.username ? `@${record.username}` : `${record.tgId}`

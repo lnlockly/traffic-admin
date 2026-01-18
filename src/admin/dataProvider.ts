@@ -31,14 +31,15 @@ export const dataProvider: DataProvider = {
       const { page = 1, perPage = 10 } = params.pagination || {};
 
       let response;
-      if (resource === "users") {
+      if (resource === "user") {
         response = await apiInstance.get(`/${resource}/pagination`, {
           params: {
             page,
             limit: perPage,
-            id: params.filter?.id,
-            tgId: params.filter?.tgId,
+
             username: params.filter?.username,
+            email: params.filter?.email,
+            subscriptionIsActive: params.filter?.subscriptionIsActive,
           },
         });
       } else if (resource === "purchases") {
@@ -67,13 +68,12 @@ export const dataProvider: DataProvider = {
             status: params.filter?.status,
           },
         });
-      } else if (resource === "withdrawal-requests") {
+      } else if (resource === "withdrawal") {
         response = await apiInstance.get(`/${resource}/pagination`, {
           params: {
             page,
             limit: perPage,
             id: params.filter?.id,
-            tgId: params.filter?.tgId,
             username: params.filter?.username,
             status: params.filter?.status,
           },
@@ -101,7 +101,7 @@ export const dataProvider: DataProvider = {
       }
 
       return {
-        data: response.data.data,
+        data: response.data.data.data,
         total: response.data.total,
       };
     }),
@@ -109,7 +109,7 @@ export const dataProvider: DataProvider = {
   getOne: (resource, params) =>
     withErrorHandler(async () => {
       let response;
-      if (resource === "users") {
+      if (resource === "user") {
         response = await apiInstance.get(`/${resource}/by-id/${params.id}`);
       } else if (resource === "market-cells") {
         response = await apiInstance.get(`/${resource}/${params.id}/for-admin`);
@@ -117,7 +117,7 @@ export const dataProvider: DataProvider = {
         response = await apiInstance.get(`/${resource}/${params.id}`);
       }
 
-      return { data: response.data };
+      return { data: response.data.data };
     }),
 
   update: (resource, params) =>
@@ -200,7 +200,7 @@ export const dataProvider: DataProvider = {
       const response = await apiInstance.get(`/${resource}/many`, {
         params: { ids },
       });
-      return { data: response.data };
+      return { data: response.data.data };
     }),
   getManyReference: (resource, params) =>
     withErrorHandler(async () => {
@@ -236,7 +236,7 @@ export const dataProvider: DataProvider = {
       }
 
       return {
-        data: response.data.data,
+        data: response.data.data.data,
         total: response.data.total,
       };
     }),

@@ -9,8 +9,8 @@ export const WithdrawalRequestShowActions: FC = () => {
   if (!record) return null;
 
   const isFinished =
-    record.status === WITHDRAW_STATUS.CONFIRMED ||
-    record.status === WITHDRAW_STATUS.CANCELED;
+    record.status === WITHDRAW_STATUS.COMPLETED ||
+    record.status === WITHDRAW_STATUS.REJECTED;
 
   return <TopToolbar>{!isFinished && <EditButton />}</TopToolbar>;
 };

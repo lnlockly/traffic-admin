@@ -22,7 +22,7 @@ export const UserEdit: FC<Props> = ({ ...props }) => {
       })}
     >
       <SimpleForm>
-        <NumberInput source="balance" label={USERS_FIELDS_LABELS.BALANCE} />
+        <NumberInput source="balance" label={USERS_FIELDS_LABELS.ACCUMULATED_BALANCE} />
 
         <NumberInput
           source="totalDeposited"

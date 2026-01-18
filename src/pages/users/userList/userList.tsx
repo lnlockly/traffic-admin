@@ -1,5 +1,5 @@
 import type { FC } from "react";
-import { DataTable, List } from "react-admin";
+import { BooleanField, DataTable, List } from "react-admin";
 
 import { USERS_FIELDS_LABELS } from "../const";
 
@@ -14,52 +14,35 @@ export const UserList: FC = ({ ...props }) => {
       actions={<CommonToolbar haveFilters />}
     >
       <DataTable bulkActionButtons={false}>
-        <DataTable.Col source="id" disableSort />
-        <DataTable.Col
-          source="tgId"
-          disableSort
-          label={USERS_FIELDS_LABELS.TG_ID}
-        />
         <DataTable.Col
           source="username"
           label={USERS_FIELDS_LABELS.USERNAME}
           disableSort
         />
         <DataTable.Col
-          source="balance"
-          label={USERS_FIELDS_LABELS.BALANCE}
+          source="email"
+          label={USERS_FIELDS_LABELS.EMAIL}
           disableSort
         />
         <DataTable.Col
-          source="totalDeposited"
-          label={USERS_FIELDS_LABELS.TOTAL_DEPOSITED}
+          source="accumulatedBalance"
+          label={USERS_FIELDS_LABELS.ACCUMULATED_BALANCE}
           disableSort
         />
         <DataTable.Col
-          source="totalWagered"
-          label={USERS_FIELDS_LABELS.TOTAL_WAGERED}
-          disableSort
-        />
-        <DataTable.Col
-          source="totalWinAmount"
-          label={USERS_FIELDS_LABELS.TOTAL_WIN_AMOUNT}
-          disableSort
-        />
-        <DataTable.Col
-          source="gamesCount"
-          label={USERS_FIELDS_LABELS.GAMES_COUNT}
-          disableSort
-        />
+          source="subscriptionIsActive"
+          label={USERS_FIELDS_LABELS.SUBSCRIPTION_IS_ACTIVE}
+        >
+          <BooleanField source="subscriptionIsActive" />
+        </DataTable.Col>
 
         <DataTable.Col
-          source="referralCode"
-          label={USERS_FIELDS_LABELS.REFERRAL_CODE}
-          disableSort
+          source="subscription"
+          label={USERS_FIELDS_LABELS.SUBSCRIPTION}
         />
         <DataTable.Col
-          source="referredByCode"
-          label={USERS_FIELDS_LABELS.REFERRED_BY_CODE}
-          disableSort
+          source="createdAt"
+          label={USERS_FIELDS_LABELS.CREATED_AT}
         />
       </DataTable>
     </List>

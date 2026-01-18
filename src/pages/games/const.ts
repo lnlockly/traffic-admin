@@ -3,8 +3,8 @@ import { WITHDRAW_STATUS } from "@/entities/withdrawalRequest/model/types/withdr
 export const withdrawalRequestChoices = [
   { id: WITHDRAW_STATUS.PENDING, name: "В ожидании" },
   { id: WITHDRAW_STATUS.IN_PROGRESS, name: "В работе" },
-  { id: WITHDRAW_STATUS.CONFIRMED, name: "Подтверждено" },
-  { id: WITHDRAW_STATUS.CANCELED, name: "Отменено" },
+  { id: WITHDRAW_STATUS.COMPLETED, name: "Подтверждено" },
+  { id: WITHDRAW_STATUS.REJECTED, name: "Отменено" },
 ];
 export const GAMES_FIELDS_LABELS = {
   USER_ID: "ID пользователя",

@@ -19,14 +19,10 @@ import { useChangeStatus } from "@/api/entities/withdrawalRequests";
 import {
   WITHDRAWAL_REQUESTS_FIELDS_LABELS,
   withdrawalRequestChoices,
-  withdrawalRequestTypeChoices,
 } from "../../const";
 
 import { useAdminStore } from "@/entities/admin/model/store/admin.store";
-import {
-  WITHDRAW_STATUS,
-  WITHDRAW_TYPE,
-} from "@/entities/withdrawalRequest/model/types/withdrawalRequest.type";
+import { WITHDRAW_STATUS } from "@/entities/withdrawalRequest/model/types/withdrawalRequest.type";
 
 export const WithdrawalRequestShowContent: FC = () => {
   const record = useRecordContext();
@@ -34,8 +30,8 @@ export const WithdrawalRequestShowContent: FC = () => {
 
   const isInProgress = record?.status === WITHDRAW_STATUS.IN_PROGRESS;
   const isFinished =
-    record?.status === WITHDRAW_STATUS.CONFIRMED ||
-    record?.status === WITHDRAW_STATUS.CANCELED;
+    record?.status === WITHDRAW_STATUS.COMPLETED ||
+    record?.status === WITHDRAW_STATUS.REJECTED;
   const isTakenByAdminId = record?.takenByAdminId;
   const adminId = useAdminStore((state) => state.adminId);
 
@@ -50,10 +46,10 @@ export const WithdrawalRequestShowContent: FC = () => {
     changeStatus({
       id: record.id.toString(),
       status,
-      comment: status === WITHDRAW_STATUS.CANCELED ? rejectComment : undefined,
+      comment: status === WITHDRAW_STATUS.REJECTED ? rejectComment : undefined,
     });
     // apiInstance.put(
-    //   `withdrawal-requests/change-status/${record.id.toString()}`,
+    //   `withdrawal/change-status/${record.id.toString()}`,
     //   {
     //     status: status,
     //     comment:
@@ -69,50 +65,28 @@ export const WithdrawalRequestShowContent: FC = () => {
           source="userId"
           label={WITHDRAWAL_REQUESTS_FIELDS_LABELS.USER_ID}
         />
-        <TextField
-          source="gameUserId"
-          label={WITHDRAWAL_REQUESTS_FIELDS_LABELS.GAME_USER_ID}
-        />
+
         <TextField
           source="amount"
           label={WITHDRAWAL_REQUESTS_FIELDS_LABELS.AMOUNT}
+        />
+        <TextField
+          source="wallet"
+          label={WITHDRAWAL_REQUESTS_FIELDS_LABELS.WALLET}
         />
         <SelectField
           source="status"
           choices={withdrawalRequestChoices}
           label={WITHDRAWAL_REQUESTS_FIELDS_LABELS.STATUS}
         />
-        <SelectField
-          source="type"
-          choices={withdrawalRequestTypeChoices}
-          label={WITHDRAWAL_REQUESTS_FIELDS_LABELS.TYPE}
-        />
-
-        {record?.type === WITHDRAW_TYPE.SKIN && (
-          <ReferenceField
-            source="itemViewId"
-            reference="item-views"
-            label={WITHDRAWAL_REQUESTS_FIELDS_LABELS.ITEM_VIEW_ID}
-          >
-            <TextField source="name" />
-          </ReferenceField>
-        )}
-        {record?.type === WITHDRAW_TYPE.SKIN && (
-          <TextField
-            source="skinPrice"
-            label={WITHDRAWAL_REQUESTS_FIELDS_LABELS.SKIN_PRICE}
-          />
-        )}
 
         <ReferenceField
           source="takenByAdminId"
-          reference="admins"
+          reference="user"
           label={WITHDRAWAL_REQUESTS_FIELDS_LABELS.TAKEN_BY_ADMIN_ID}
         >
           <TextField source="username" />
         </ReferenceField>
-
-        {/* <UserTaskAnswersList /> */}
       </SimpleShowLayout>
       <Card sx={{ mt: 2 }}>
         {isFinished && (
@@ -168,7 +142,7 @@ export const WithdrawalRequestShowContent: FC = () => {
                 variant="contained"
                 color="success"
                 disabled={isNotRedacting || isPending}
-                onClick={() => onHandleClick(WITHDRAW_STATUS.CONFIRMED)}
+                onClick={() => onHandleClick(WITHDRAW_STATUS.COMPLETED)}
               >
                 Подтвердить
               </Button>
@@ -176,7 +150,7 @@ export const WithdrawalRequestShowContent: FC = () => {
                 variant="contained"
                 color="error"
                 disabled={isNotRedacting || rejectComment === "" || isPending}
-                onClick={() => onHandleClick(WITHDRAW_STATUS.CANCELED)}
+                onClick={() => onHandleClick(WITHDRAW_STATUS.REJECTED)}
               >
                 Отказать
               </Button>

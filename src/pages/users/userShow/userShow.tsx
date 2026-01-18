@@ -10,7 +10,7 @@ export const UserShow: FC = () => {
         <TextField source="id" />
         <TextField source="tgId" label={USERS_FIELDS_LABELS.TG_ID} />
         <TextField source="username" label={USERS_FIELDS_LABELS.USERNAME} />
-        <TextField source="balance" label={USERS_FIELDS_LABELS.BALANCE} />
+        <TextField source="balance" label={USERS_FIELDS_LABELS.ACCUMULATED_BALANCE} />
         <TextField
           source="totalDeposited"
           label={USERS_FIELDS_LABELS.TOTAL_DEPOSITED}
